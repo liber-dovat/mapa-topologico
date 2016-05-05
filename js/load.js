@@ -10,6 +10,7 @@
 // http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png
 // https://[abc].tile.thunderforest.com/landscape/{z}/{x}/{y}.png http://www.thunderforest.com/maps/landscape/
 // https://[abc].tile.thunderforest.com/outdoors/{z}/{x}/{y}.png http://www.thunderforest.com/maps/outdoors/
+// https://[abc].tile.thunderforest.com/transport/{z}/{x}/{y}.png
 // https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 
 var map = L.map('map');
@@ -21,12 +22,7 @@ OpenStreetMap_Mapnik.addTo(map);
 
 map.setView([-34.9159, -56.16202], 14);
 
-// var SLDStyler = new L.SLDStyler("./assets/estilo_topo.sld");
-
-// var mvdo_geojson = new L.GeoJSON.AJAX("./assets/montevideo_topo.geojson", SLDStyler.getStyleFunction());
-// mvdo_geojson.addTo(map);
-
-function getColor(elev) {
+function azul_verde_marron(elev) {
     return elev > 70 ? '#A90201' :
            elev > 60 ? '#8E5629' :
            elev > 50 ? '#739A51' :
@@ -39,7 +35,7 @@ function getColor(elev) {
                        '#FFEDA0';
 }
 
-function getColor2(elev) {
+function amarillos(elev) {
     return elev > 70 ? '#800026' :
            elev > 60 ? '#BD0026' :
            elev > 50 ? '#E31A1C' :
@@ -50,7 +46,17 @@ function getColor2(elev) {
                        '#FFEDA0';
 }
 
-function style(feature) {
+// grosor de la línea
+function grosor(elev) {
+    return elev == 50  ? 3 :
+           elev == 100 ? 3 :
+           elev == 150 ? 3 :
+           elev == 200 ? 3 :
+                         1;
+}
+
+// estilo punteado
+function punteado(feature) {
     return {
         weight: 2,
         opacity: 1,
@@ -60,21 +66,29 @@ function style(feature) {
     };
 }
 
-function style2(feature) {
+// estilo de colores azules a marrones
+function azules_a_marrones(feature) {
     return {
-        weight: 1,
+        weight: grosor(feature.properties.ELEV),
         opacity: 0.6,
-        color: getColor(feature.properties.ELEV)
+        color: azul_verde_marron(feature.properties.ELEV)
     };
 }
 
-function style3(feature) {
+// estilo de colores en tonos de amarillo
+function tonos_amarillos(feature) {
     return {
-        weight: 1,
+        weight: grosor(feature.properties.ELEV),
         opacity: 0.6,
-        color: getColor2(feature.properties.ELEV)
+        color: amarillos(feature.properties.ELEV)
     };
 }
 
-var mvdo_geojson = new L.GeoJSON.AJAX("./assets/montevideo_topo.geojson", {style: style2});
-mvdo_geojson.addTo(map);
+// var mvdo_geojson = new L.GeoJSON.AJAX("./assets/montevideo_topo.geojson", {style: azules_a_marrones});
+// mvdo_geojson.addTo(map);
+
+var canelones_geojson = new L.GeoJSON.AJAX("./assets/canelones_a2mts.geojson", {style: azules_a_marrones});
+canelones_geojson.addTo(map);
+
+var montevideo_geojson = new L.GeoJSON.AJAX("./assets/montevideo_a2mts.geojson", {style: azules_a_marrones});
+montevideo_geojson.addTo(map);
