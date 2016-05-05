@@ -28,9 +28,9 @@ function azul_verde_marron(elev) {
            elev > 50 ? '#739A51' :
            elev > 40 ? '#59C879' :
            elev > 30 ? '#3EC3A1' :
-           elev > 20 ? '#239BC9' :
-           elev > 10 ? '#0927F1' :
-           elev > 4  ? '#0001FF' :
+           elev > 20 ? '#31BCB4' :
+           elev > 10 ? '#2CB9BC' :
+           elev > 4  ? '#249EC8' :
            elev <= 4 ? '#0000ff' :
                        '#FFEDA0';
 }
