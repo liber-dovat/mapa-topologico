@@ -87,8 +87,8 @@ function tonos_amarillos(feature) {
 // var mvdo_geojson = new L.GeoJSON.AJAX("./assets/montevideo_topo.geojson", {style: azules_a_marrones});
 // mvdo_geojson.addTo(map);
 
-var canelones_geojson = new L.GeoJSON.AJAX("./assets/canelones_a5mts.geojson", {style: azules_a_marrones});
+var canelones_geojson = new L.GeoJSON.AJAX("./assets/canelones_a2mts_5decimales.geojson", {style: azules_a_marrones});
 canelones_geojson.addTo(map);
 
-var montevideo_geojson = new L.GeoJSON.AJAX("./assets/montevideo_a5mts.geojson", {style: azules_a_marrones});
+var montevideo_geojson = new L.GeoJSON.AJAX("./assets/montevideo_a2mts_5decimales.geojson", {style: azules_a_marrones});
 montevideo_geojson.addTo(map);
