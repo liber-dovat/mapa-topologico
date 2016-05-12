@@ -13,6 +13,8 @@
 // https://[abc].tile.thunderforest.com/transport/{z}/{x}/{y}.png
 // https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 
+// http://blog.thematicmapping.org/2013/06/converting-shapefiles-to-topojson.html
+
 var map = L.map('map');
 
 var OpenStreetMap_Mapnik = L.tileLayer('http://otile1-s.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg', {
